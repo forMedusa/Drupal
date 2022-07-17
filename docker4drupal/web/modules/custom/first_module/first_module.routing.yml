@@ -1,0 +1,29 @@
+first_module.Hello:
+  path: '/Hello-world'
+  defaults:
+    _controller: 'Drupal\first_module\Controller\HelloController::say'
+    _title: 'Hello World this is first_module'
+  requirements:
+    _permission: 'access content'
+
+first_module.myForm:
+  path: '/custom-form'
+  defaults:
+    _form: 'Drupal\first_module\Form\myForm'
+    _title: 'My first form'
+  requirements:
+    _permission: 'access content'
+
+# first_module.showContent:
+#   path: '/table-form'
+#   defaults:
+#     _form: 'Drupal\first_module\Form\myForm::showContent'
+#   requirements:
+#     _permission: 'access content'
+
+# first_module.dbForm:
+#   path: '/Hello-world'
+#   defaults:
+#     _form: 'Drupal\first_module\Form\dbForm'
+#   requirements:
+#     _permission: 'access content'

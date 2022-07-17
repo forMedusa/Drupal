@@ -1,0 +1,11 @@
+<?php
+
+function butterscotch_preprocess_node__view__frontpage(&$variables) {
+    // $variables['date']= date('d/m/y');
+    // $variables['what']='THIS IS IT';
+    // $variables['sum']=5+8;
+        // your code
+       //  Kint($variables);
+      
+  
+  }

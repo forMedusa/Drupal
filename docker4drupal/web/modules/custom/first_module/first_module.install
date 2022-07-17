@@ -1,0 +1,68 @@
+<?php
+/**
+ * Implements hook_schema().
+ */
+// function first_module_schema() {
+//     $schema['user_data'] = array(
+//       'description' => 'A table to store user data',
+//       'fields' => array(
+//         'id' => array(
+//         'description' => 'Holds the id value',
+//         'type' => 'serial',
+//         //'unsigned' => TRUE,
+//         'not null' => TRUE,
+//         ),
+//         'name' => array(
+//           'description' => 'Holds the name value',
+//           'type' => 'varchar',
+//           'length' => '50',
+//           'not null' => TRUE,
+//         ),
+//         'email' => array(
+//             'description' => "Holds the email of the user",
+//             'type' => 'email',
+//             'length' => '50',
+//             'not null' => TRUE,
+//         ),
+//         'age' => array(
+//             'description' => "Holds the age of the user",
+//             'type' => "number",
+//             'length' => '5',
+//             'not null' => TRUE,
+//         ),
+//       ),  
+//       'primary key' => array('id'), 
+//     );  
+function first_module_schema() 
+{
+  \Drupal::logger('first_module')->notice("fucntion called");
+
+  $schema['dev'] = [
+    'fields' =>[
+      'uid' =>[
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => "Creator user's uid",
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Name of the developer.',
+      ],
+      'age' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'size' => 'tiny',
+        'description' => 'The age of the developer in years.',
+      ],
+     ],
+    'primary key' => ['uid'],
+    'indexes' => [
+      'uid' => ['uid'],
+      'name' => ['name'],
+    ],
+  ];
+  return $schema;
+}

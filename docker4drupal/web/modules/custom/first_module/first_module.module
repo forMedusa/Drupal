@@ -1,0 +1,74 @@
+<?php
+
+use Drupal\devel\Plugin\Devel\Dumper\Kint;
+use Drupal\devel_kint_extras\Plugin\Devel\Dumper\KintExtended;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function first_module_views_query_alter($view, $query)
+{
+    //Kint($view->id());
+    //     Kint("chala 1");
+    if ($view->id() == "personal_listing_page") {
+        //Kint("chala");
+        foreach ($query->where as &$conditon_group) {
+            foreach ($conditon_group['conditions'] as &$condition) {
+                //Kint($condition);
+                if ($condition['field'] == 'node_field_data.type') {
+                    //Kint($condition);
+                    $condition = [
+                        "field" => "node_field_data.type",
+                        "value" => [
+                            "Article"
+                        ],
+                        "operator" => "in"
+                    ];
+                }
+                if ($condition['field'] == "taxonomy_index.tid = :taxonomy_index_tid") {
+                    //Kint($condition);
+                    $condition = [
+                        "field" => "taxonomy_index.tid = :taxonomy_index_tid",
+                        "value" => [":taxonomy_index_tid" =>  7],
+                        "operator" => "formula"
+                    ];
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function first_module_form_alter(&$form, $form_state, $form_id) {
+    if($form_id == "node_user_form"){
+       // Kint("chala");
+        $form["field_maturity"]["#access"]= FALSE;
+    }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function first_module_node_presave($node){
+    //Kint("chalaa 1");
+    if($node->getType()=="user"){
+        $age=($node->get("field_age")->getValue()[0]["value"]);
+        //Kint($age);
+        if($age<13){
+            $node->set("field_maturity", "Child");
+        }
+        else if($age>13 && $age<=18){
+            $node->set("field_maturity", "Teenager");
+            //Kint("chalaa");
+        }
+        elseif($age>18 && $age<=60){
+            $node->set("field_maturity", "Mature");
+        }
+        else{
+            $node->set("field_maturity", "Old");
+
+        }
+    }
+}

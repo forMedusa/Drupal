@@ -1,0 +1,27 @@
+name: Butterscotch
+type: theme
+description: 'THIS IS MY THEME'
+core_version_requirement: ^8 || ^9
+base theme: stable
+libraries:
+  - butterscotch/global-style
+  - butterscotch/sass-style
+
+# libraries-override:
+#   system/base: false
+
+libraries-extend:
+  bartik/global-styling:
+    - butterscotch/demo-css
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+  footer: 'Footer'

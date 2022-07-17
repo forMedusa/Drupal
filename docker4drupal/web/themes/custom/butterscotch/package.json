@@ -1,0 +1,15 @@
+{
+  "name": "butterscotch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run-sass": "sass ./sass/styleit.scss ./css/styleit.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.52.3"
+  }
+}
